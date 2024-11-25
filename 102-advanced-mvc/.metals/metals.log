@@ -1,0 +1,16 @@
+2024.11.25 16:30:44 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\cristian.didonato\Desktop\lab10\lab10\102-advanced-mvc\.metals\lsp.trace.json or C:\Users\cristian.didonato\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2024.11.25 16:30:47 INFO  logging to file C:\Users\cristian.didonato\Desktop\lab10\lab10\102-advanced-mvc\.metals\metals.log
+2024.11.25 16:30:47 INFO  Started: Metals version 0.11.10 in workspace 'C:\Users\cristian.didonato\Desktop\lab10\lab10\102-advanced-mvc' for client Visual Studio Code 1.74.3.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/C:/Users/cristian.didonato/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.10.5/scribe-slf4j_2.13-3.10.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2024.11.25 16:30:48 INFO  time: initialize in 1.37s
+2024.11.25 16:30:50 WARN  Build server is not auto-connectable.
+2024.11.25 16:30:50 WARN  no build target for: C:\Users\cristian.didonato\Desktop\lab10\lab10\102-advanced-mvc\src\main\java\it\unibo\mvc\DrawNumberImpl.java
+nov 25, 2024 4:30:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVVERTENZA: Unmatched cancel notification for request id 1
+2024.11.25 16:33:20 WARN  no build target for: C:\Users\cristian.didonato\Desktop\lab10\lab10\102-advanced-mvc\src\main\java\it\unibo\mvc\DrawNumberApp.java
+2024.11.25 16:33:29 INFO  shutting down Metals

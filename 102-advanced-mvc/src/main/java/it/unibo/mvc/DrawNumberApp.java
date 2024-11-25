@@ -1,16 +1,16 @@
 package it.unibo.mvc;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  */
 public final class DrawNumberApp implements DrawNumberViewObserver {
-    private static final int MIN = 0;
-    private static final int MAX = 100;
-    private static final int ATTEMPTS = 10;
-
     private final DrawNumber model;
     private final List<DrawNumberView> views;
 
@@ -18,7 +18,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      * @param views
      *            the views to attach
      */
-    public DrawNumberApp(final DrawNumberView... views) {
+    public DrawNumberApp(final DrawNumberView... views) throws IOException {
         /*
          * Side-effect proof
          */
@@ -27,7 +27,35 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
             view.setObserver(this);
             view.start();
         }
-        this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
+        Configuration.Builder cf = new Configuration.Builder();
+        try {
+            List<String> lines = Files.readAllLines(new File(ClassLoader.getSystemResource("config.yml").getPath()).toPath(), StandardCharsets.UTF_8);
+                for(String line : lines){
+                    String[] sr = line.split(":");
+                    if(sr.length == 2){
+                        final int value = Integer.parseInt(sr[1].trim());
+                        if(sr[0].contains("min")){
+                            cf.setMin(value);
+                        } 
+                        else if (sr[0].contains("max")) {
+                            cf.setMax(value);
+                        }
+                        else {
+                            cf.setAttempts(value);
+                        }
+                    }
+ 
+                }
+        } catch ( IOException | NumberFormatException e){
+            System.out.print("negro");
+        }
+        final Configuration configuration = cf.build();
+        if (configuration.isConsistent()) {
+            this.model = new DrawNumberImpl(configuration);
+        }
+        else{
+            this.model = new DrawNumberImpl(new Configuration.Builder().build());
+        }
     }
 
     @Override
@@ -65,7 +93,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      *            ignored
      * @throws FileNotFoundException 
      */
-    public static void main(final String... args) throws FileNotFoundException {
+    public static void main(final String... args) throws FileNotFoundException, IOException {
         new DrawNumberApp(new DrawNumberViewImpl());
     }
 
