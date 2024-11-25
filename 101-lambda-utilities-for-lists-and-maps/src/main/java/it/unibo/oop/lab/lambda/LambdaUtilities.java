@@ -61,7 +61,9 @@ public final class LambdaUtilities {
         /*
          * Suggestion: consider Optional.filter
          */
-        return null;
+        final List<Optional<T>> l = new ArrayList<>(list.size());
+        list.forEach(t -> l.add(Optional.of(t).filter(pre)));
+        return l;
     }
 
     /**
@@ -80,6 +82,8 @@ public final class LambdaUtilities {
         /*
          * Suggestion: consider Map.merge
          */
+        final Map<R,Set<T>> l = new HashMap<>();
+        list.forEach(t -> l.merge( op.apply(t), l.get(op.apply(t)), (old,newSet) -> {old.addAll(newSet); return old;}));
         return null;
     }
 
@@ -101,6 +105,8 @@ public final class LambdaUtilities {
          *
          * Keep in mind that a map can be iterated through its forEach method
          */
+        final Map<K,V> lm = new HashMap<>();
+        map.forEach((t,k) -> lm.put(t, k.orElse(def.get())));
         return null;
     }
 

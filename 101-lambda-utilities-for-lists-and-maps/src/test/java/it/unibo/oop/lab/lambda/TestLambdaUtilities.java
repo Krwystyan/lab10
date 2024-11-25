@@ -31,7 +31,7 @@ final class TestLambdaUtilities {
         assertEquals(
             List.of("a", "aa", "b", "bb", "c", "cc"),
             LambdaUtilities.dup(List.of("a", "b", "c"), x -> x + x)
-        );
+        ); 
     }
 
     /**
