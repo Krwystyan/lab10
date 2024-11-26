@@ -47,7 +47,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
  
                 }
         } catch ( IOException | NumberFormatException e){
-            System.out.print("negro");
+            displayError(e.getMessage());
         }
         final Configuration configuration = cf.build();
         if (configuration.isConsistent()) {
@@ -55,6 +55,12 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
         }
         else{
             this.model = new DrawNumberImpl(new Configuration.Builder().build());
+        }
+    }
+
+    private void displayError(final String err) {
+        for (final DrawNumberView view: views) {
+            view.displayError(err);
         }
     }
 
@@ -94,7 +100,9 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      * @throws FileNotFoundException 
      */
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        new DrawNumberApp(new DrawNumberViewImpl());
+        new DrawNumberApp( // res is part of the classpath!
+                new DrawNumberViewImpl(),
+                new DrawNumberViewImpl());
     }
 
 }
